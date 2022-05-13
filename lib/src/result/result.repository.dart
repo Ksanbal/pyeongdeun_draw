@@ -20,19 +20,24 @@ class ResultRepository {
 
   String? drawOne() {
     if (result.participateList.isEmpty) {
-      return null;
+      return '다 뽑았어요!';
     }
+
     int index = Random().nextInt(result.participateList.length);
 
     String winner = result.participateList[index];
     result.participateList.removeAt(index);
 
-    if (winners.containsKey(winner) && winners[winner]! < result.maxWinning) {
+    if (winners.containsKey(winner)) {
+      if (winners[winner]! >= result.maxWinning) {
+        result.participateList.removeWhere((element) => element == winner);
+        return drawOne();
+      }
       winners[winner] = winners[winner]! + 1;
     } else {
       winners[winner] = 1;
     }
-
-    return winner;
+    result.participateList.removeAt(index);
+    return winner + '님!';
   }
 }

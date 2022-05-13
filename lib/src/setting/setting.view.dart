@@ -30,7 +30,7 @@ class _SettingViewState extends State<SettingView> {
     return Scaffold(
       backgroundColor: Colors.grey[800],
       body: Padding(
-        padding: const EdgeInsets.all(30),
+        padding: const EdgeInsets.all(15),
         child: oNeonContainer(
           padding: const EdgeInsets.all(30),
           borderWidth: 2,
@@ -90,8 +90,10 @@ class _SettingViewState extends State<SettingView> {
                                 counterWidget(
                                   _settingRepository.ticketCount,
                                   onRemove: () {
-                                    _settingRepository.ticketCount--;
-                                    setState(() {});
+                                    if (_settingRepository.ticketCount > 0) {
+                                      _settingRepository.ticketCount--;
+                                      setState(() {});
+                                    }
                                   },
                                   onAdd: () {
                                     _settingRepository.ticketCount++;
@@ -124,8 +126,10 @@ class _SettingViewState extends State<SettingView> {
                                 counterWidget(
                                   _settingRepository.maxWinning,
                                   onRemove: () {
-                                    _settingRepository.maxWinning--;
-                                    setState(() {});
+                                    if (_settingRepository.maxWinning > 0) {
+                                      _settingRepository.maxWinning--;
+                                      setState(() {});
+                                    }
                                   },
                                   onAdd: () {
                                     _settingRepository.maxWinning++;
@@ -185,8 +189,10 @@ class _SettingViewState extends State<SettingView> {
                                       setState(() {});
                                     },
                                     onRemove: () {
-                                      e.count--;
-                                      setState(() {});
+                                      if (e.count > 0) {
+                                        e.count--;
+                                        setState(() {});
+                                      }
                                     },
                                   ),
                                 ],

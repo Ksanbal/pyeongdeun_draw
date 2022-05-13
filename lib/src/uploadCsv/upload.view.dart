@@ -1,13 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:neon_widgets/neon_widgets.dart';
-import 'package:pyeongdeun_draw/src/setting/setting.view.dart';
-import 'package:pyeongdeun_draw/src/uploadCsv/upload.repository.dart';
+import 'package:pyeongdeun_draw/src/input/input.view.dart';
 
 class UploadCsvView extends StatelessWidget {
-  UploadCsvView({Key? key}) : super(key: key);
+  const UploadCsvView({Key? key}) : super(key: key);
 
-  final UploadRepository _uploadRepository = UploadRepository();
+  // final UploadRepository _uploadRepository = UploadRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -64,25 +63,43 @@ class UploadCsvView extends StatelessWidget {
                                   padding: const EdgeInsets.all(10),
                                   child: TextButton.icon(
                                     onPressed: () async {
-                                      List<String> participateList = await _uploadRepository.getListFromUploadCsv();
-                                      if (participateList.isNotEmpty) {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => SettingView(
-                                              participateList: participateList,
-                                            ),
-                                          ),
-                                        );
-                                      }
+                                      // List<String> participateList = await _uploadRepository.getListFromUploadCsv();
+                                      // if (participateList.isNotEmpty) {
+                                      //   Navigator.push(
+                                      //     context,
+                                      //     MaterialPageRoute(
+                                      //       builder: (context) => SettingView(
+                                      //         participateList: participateList,
+                                      //       ),
+                                      //     ),
+                                      //   );
+                                      // }
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => const InputView(),
+                                        ),
+                                      );
                                     },
+                                    // icon: const Icon(
+                                    //   Icons.file_upload_outlined,
+                                    //   color: Colors.white,
+                                    //   size: 35,
+                                    // ),
+                                    // label: const Text(
+                                    //   '명단 업로드',
+                                    //   style: TextStyle(
+                                    //     color: Colors.white,
+                                    //     fontSize: 30,
+                                    //   ),
+                                    // ),
                                     icon: const Icon(
-                                      Icons.file_upload_outlined,
+                                      Icons.input_rounded,
                                       color: Colors.white,
                                       size: 35,
                                     ),
                                     label: const Text(
-                                      '명단 업로드',
+                                      ' 참가자 입력하기',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 30,

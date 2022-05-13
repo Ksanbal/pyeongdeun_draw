@@ -1,6 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pyeongdeun_draw/firebase_options.dart';
 import 'package:pyeongdeun_draw/src/uploadCsv/upload.view.dart';
 
@@ -8,6 +9,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
   FirebaseAnalytics.instance.logAppOpen();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.indigo,
         fontFamily: 'NIXGON',
       ),
-      home: UploadCsvView(),
+      home: const UploadCsvView(),
     );
   }
 }

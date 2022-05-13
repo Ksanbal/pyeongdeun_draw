@@ -153,7 +153,7 @@ class _ResultViewState extends State<ResultView> {
                             Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => UploadCsvView(),
+                                builder: (context) => const UploadCsvView(),
                               ),
                               (route) => false,
                             );

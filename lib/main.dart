@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pyeongdeun_draw/src/setting/setting.view.dart';
 import 'package:pyeongdeun_draw/src/uploadCsv/upload.view.dart';
 
 void main() {
@@ -13,34 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '평든뽑기',
+      title: "Let's PYD",
       theme: ThemeData(
         primarySwatch: Colors.indigo,
+        fontFamily: 'NIXGON',
       ),
-      // home: UploadCsvView(),
-      home: SettingView(participateList: [
-        '김산발',
-        '김현균',
-        '오래가는바나나',
-        '김산발',
-        '김현균',
-        '오래가는바나나',
-        '김산발',
-        '김현균',
-        '오래가는바나나',
-        '김산발',
-        '김현균',
-        '오래가는바나나',
-        '김산발',
-        '김현균',
-        '오래가는바나나',
-        '김산발',
-        '김현균',
-        '오래가는바나나',
-        '김산발',
-        '김현균',
-        '오래가는바나나'
-      ]),
+      home: UploadCsvView(),
     );
   }
 }

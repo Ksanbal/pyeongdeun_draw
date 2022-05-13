@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:neon_widgets/neon_widgets.dart';
 import 'package:pyeongdeun_draw/src/result/result.view.dart';
 import 'package:pyeongdeun_draw/src/setting/setting.repository.dart';
@@ -43,13 +44,41 @@ class _SettingViewState extends State<SettingView> {
               children: [
                 Column(
                   children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: InkWell(
+                        onTap: Navigator.of(context).pop,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Icon(
+                                Icons.keyboard_double_arrow_left_rounded,
+                                size: 30,
+                                color: Colors.white,
+                              ),
+                              SizedBox(width: 5),
+                              Text(
+                                '참가자 수정하기',
+                                style: TextStyle(
+                                  fontSize: 25,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                     // 설정값
                     oNeonContainer(
                       // containerColor: Colors.black,
                       borderColor: Colors.deepPurple,
                       spreadColor: Colors.deepPurple.withOpacity(0.6),
                       borderWidth: 2,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(15),
                       child: const Padding(
                         padding: EdgeInsets.all(10),
                         child: Center(
@@ -148,7 +177,7 @@ class _SettingViewState extends State<SettingView> {
                       borderColor: Colors.green,
                       spreadColor: Colors.green.withOpacity(0.6),
                       borderWidth: 2,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(15),
                       child: const Padding(
                         padding: EdgeInsets.all(10),
                         child: Center(
@@ -237,15 +266,24 @@ class _SettingViewState extends State<SettingView> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ResultView(
-                                    maxWinning: _settingRepository.maxWinning,
-                                    participateList: _settingRepository.ticketList,
+                              onPressed: () async {
+                                // localStorage 저장
+                                final LocalStorage storage = LocalStorage('pyd_history');
+                                if (await storage.ready) {
+                                  await storage.setItem('nameList', widget.participateList);
+                                }
+
+                                // 다음 페이지로
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ResultView(
+                                      maxWinning: _settingRepository.maxWinning,
+                                      participateList: _settingRepository.ticketList,
+                                    ),
                                   ),
-                                ),
-                              ),
+                                );
+                              },
                               child: oFlickerNeonText(
                                 text: '갑시다!!',
                                 textSize: 25,
@@ -263,7 +301,7 @@ class _SettingViewState extends State<SettingView> {
                       height: 90,
                       padding: const EdgeInsets.all(20),
                       borderWidth: 2,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(15),
                       containerColor: Colors.pinkAccent.withOpacity(0.8),
                       spreadColor: Colors.pinkAccent.withOpacity(0.5),
                       child: const Center(

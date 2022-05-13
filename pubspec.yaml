@@ -35,6 +35,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   neon_widgets: ^0.1.2
   file_picker: ^4.5.1
+  cached_network_image: ^3.2.0
+  firebase_core: ^1.16.0
+  firebase_analytics: ^9.1.7
 
 dev_dependencies:
   flutter_test:

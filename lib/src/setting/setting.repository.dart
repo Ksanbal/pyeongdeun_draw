@@ -1,15 +1,15 @@
-class TicketModel {
-  String name;
-  int count;
-
-  TicketModel({
-    required this.name,
-    this.count = 10,
-  });
-}
+import 'package:pyeongdeun_draw/src/setting/setting.model.dart';
 
 class SettingRepository {
-  int ticketCount = 10;
+  int _ticketCount = 10;
+  int get ticketCount => _ticketCount;
+  set ticketCount(value) {
+    for (var element in ticketList) {
+      element.count = value;
+    }
+    _ticketCount = value;
+  }
+
   int maxWinning = 3;
 
   List<TicketModel> ticketList = [];
